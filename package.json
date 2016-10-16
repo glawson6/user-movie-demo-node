@@ -1,0 +1,14 @@
+{
+  "name": "user-movie-demo-node",
+  "version": "1.0.0",
+  "description": "A small program that creates a few movie APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "movie-demo"
+  ],
+  "author": "Gregory Lawson",
+  "license": "ISC"
+}
