@@ -1,11 +1,14 @@
 var pool = require("./db.js")();
-var moviesWatchedQuery = "select mv.movieid, mv.name, mr.rating, g.name as genre from movie_rating mr " +
+const moviesWatchedQuery = "select mv.movieid, mv.name, mr.rating, g.name as genre from movie_rating mr " +
     "join movie mv on mv.movieid = mr.movieid " +
     "join genre g on g.genreid = mv.genreid " +
     "join user usr1 on usr1.userid = mr.userid " +
     "where usr1.userid = ? ";
+interface MovieDAO{
+    watchedMovies(userId: String, callback: any);
+}
 
-class MovieDAO{
+class MovieDAOImpl{
 
     constructor(){
         console.log("Initializing ConsoleDisplay.....");
@@ -35,4 +38,4 @@ class MovieDAO{
     }
 }
 
-export = MovieDAO;
+export = MovieDAOImpl;

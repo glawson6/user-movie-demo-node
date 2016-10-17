@@ -5,11 +5,11 @@ var moviesWatchedQuery = "select mv.movieid, mv.name, mr.rating, g.name as genre
     "join genre g on g.genreid = mv.genreid " +
     "join user usr1 on usr1.userid = mr.userid " +
     "where usr1.userid = ? ";
-var MovieDAO = (function () {
-    function MovieDAO() {
+var MovieDAOImpl = (function () {
+    function MovieDAOImpl() {
         console.log("Initializing ConsoleDisplay.....");
     }
-    MovieDAO.prototype.watchedMovies = function (userId, callback) {
+    MovieDAOImpl.prototype.watchedMovies = function (userId, callback) {
         pool.getConnection(function (err, connection) {
             if (err) {
                 callback(err);
@@ -27,6 +27,6 @@ var MovieDAO = (function () {
             });
         });
     };
-    return MovieDAO;
+    return MovieDAOImpl;
 }());
-module.exports = MovieDAO;
+module.exports = MovieDAOImpl;
