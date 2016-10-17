@@ -1,0 +1,21 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "inquirer/inquirer.d.ts": {
+      "commit": "3915bf3c8f3aa482c74eaba791c0f22e8f6b2678"
+    },
+    "rx/rx-lite.d.ts": {
+      "commit": "3915bf3c8f3aa482c74eaba791c0f22e8f6b2678"
+    },
+    "node/node.d.ts": {
+      "commit": "3915bf3c8f3aa482c74eaba791c0f22e8f6b2678"
+    },
+    "through/through.d.ts": {
+      "commit": "3915bf3c8f3aa482c74eaba791c0f22e8f6b2678"
+    }
+  }
+}

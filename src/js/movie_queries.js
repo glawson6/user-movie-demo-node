@@ -4,6 +4,8 @@ module.exports = function (options) {
     //var dbPool = require("./db.js");
     var pool = require("./db.js")();
 
+    var MovieDAO = require("./MovieDAO.js");
+
     seneca.add({role: 'movie.watcher', cmd: 'moviesWatched'}, moviesWatched);
     //seneca.add({role:'inventory', cmd:'create_item', create_item);
     //... other action definitions
@@ -24,6 +26,7 @@ module.exports = function (options) {
     function moviesWatched(args, done) {
 
         console.log("Args => " + JSON.stringify(args.userId));
+        /*
         var moviesWatchedQuery = "select mv.movieid, mv.name, mr.rating, g.name as genre from movie_rating mr " +
             "join movie mv on mv.movieid = mr.movieid " +
             "join genre g on g.genreid = mv.genreid " +
@@ -51,8 +54,10 @@ module.exports = function (options) {
             });
         });
 
-
+         */
         //done(null, moviesWatched);
+        var movieDAO = new MovieDAO();
+        movieDAO.watchedMovies(args.userId, done);
     }
 
     /*
