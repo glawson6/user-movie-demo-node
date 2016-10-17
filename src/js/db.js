@@ -1,7 +1,7 @@
-module.exports = function(options) {
+module.exports = pooled;
 
-    var mysql     =    require('mysql');
-  var pool      =    mysql.createPool({
+var mysql     =    require('mysql');
+var connection      =    mysql.createPool({
     connectionLimit : 10, //important
     host     : 'localhost',
     user     : 'guest',
@@ -10,7 +10,6 @@ module.exports = function(options) {
     debug    :  false
 });
 
- 
-
-  return pool;
+function pooled (){
+    return connection;
 }
