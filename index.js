@@ -11,7 +11,8 @@ seneca.use(SenecaWeb, {
     adapter: require('seneca-web-adapter-express')
 });
 
-seneca.use('./src/js/movie_queries.js');
+// Service
+seneca.use('./src/js/MovieService.js');
 
 seneca.ready(function(){
     /*
@@ -28,6 +29,18 @@ seneca.ready(function(){
 
     app.get('/moviesWatched/:id', function (req, res) {
         seneca.act({role: 'movie.watcher', cmd: 'moviesWatched', userId: req.params.id}, function (err, item) {
+            res.json(item);
+        });
+    });
+
+    app.get('/averageRating/:id', function (req, res) {
+        seneca.act({role: 'movie.watcher', cmd: 'averageRating', movieId: req.params.id}, function (err, item) {
+            res.json(item);
+        });
+    });
+
+    app.get('/topMovies/:genre/:id', function (req, res) {
+        seneca.act({role: 'movie.watcher', cmd: 'topMovies', userId: req.params.id, genre:req.params.genre}, function (err, item) {
             res.json(item);
         });
     });

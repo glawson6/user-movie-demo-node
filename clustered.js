@@ -25,8 +25,8 @@ if (cluster.isMaster) {
     });
 
 // Code to run if we're in a worker process
-} else { 
-    
+} else {
+
 const Seneca = require('seneca')
 const SenecaWeb = require('seneca-web')
 const Express = require('express')
@@ -35,7 +35,7 @@ seneca.use(SenecaWeb, {
   context: Express(),
   adapter: require('seneca-web-adapter-express')
 })
-seneca.use( './src/js/movie_queries.js')
+seneca.use( './src/js/MovieService.js')
 
 seneca.ready(() => {
   const app = seneca.export('web/context')();

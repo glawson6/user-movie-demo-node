@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "debug": "registry:npm/debug#2.0.0+20160723033700",
+    "inquirer": "registry:npm/inquirer#1.0.0+20160723033700"
+  }
+}

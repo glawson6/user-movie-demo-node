@@ -29,6 +29,8 @@
     "seneca-web": "2.0.0",
     "seneca-web-adapter-express": "^1.0.2",
     "throng": "4.0.0",
-    "typescript": "^2.0.3"
+    "typescript": "^2.0.3",
+    "typings": "^1.4.0",
+    "underscore": "^1.8.3"
   }
 }
