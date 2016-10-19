@@ -1,133 +1,34 @@
-# user-movie-demo
+# user-movie-demo-node
 
 Data Focused Java Developer - Programming Test
-·         Create an in-memory database
-o    Credentials cfa_admin / p@$$w0rd!
-o    Create a data model that fulfills the following requirements
-·         Track users, movies, and movie ratings by user
-o    Think through the modeling exercise and decide what tables fields will be useful/required
-o    Save the DDL for the database to a file called "ddl.sql".
-o    Populate each of the tables with some sample data, save these inserts in a file called "sample_data.sql". Read the queries below as they will require certain sample data to be populated.
-·         Using Java/Spring, write RESTful API methods that return the following. We will evaluate based on correctness of results and coding style.
-o    Given a userId, return all movies that user has watched and the total count, as well as the rating for that movie.
-o    Given a parameter of "movieId", return its average rating.
-o    Given a genre such as "action" and a userId, return the top 5 movies for that genre by average rating, where the rating was made by other users within 5 years (older and younger) of the user's age.
-·         AFTER running your queries, we will attempt to insert some additional data, perhaps for a movie that already exists. Ensure the behavior of the database will support this properly (referential integrity, proper primary keys, etc). Give consideration to where indexes may be needed (and include in ddl.sql if any are created).
-·         Gzip the completed database, your API code, plus the ddl.sql and sample_data.sql and submit them.
-· 
+Create a data model that fulfills the following requirements
+*   Track users, movies, and movie ratings by user
+*   Think through the modeling exercise and decide what tables fields will be useful/required
+*   Save the DDL for the database to a file called "ddl.sql".
+*   Populate each of the tables with some sample data, save these inserts in a file called "sample_data.sql". Read the queries below as they will require certain sample data to be populated.
+*   Using Node.js, write RESTful API methods that return the following. We will evaluate based on correctness of results and coding style.
+*   Given a userId, return all movies that user has watched and the total count, as well as the rating for that movie.
+*   Given a parameter of "movieId", return its average rating.
+*   Given a genre such as "action" and a userId, return the top 5 movies for that genre by average rating, where the rating was made by other users within 5 years (older and younger) of the user's age.
+*   AFTER running your queries, we will attempt to insert some additional data, perhaps for a movie that already exists. Ensure the behavior of the database will support this properly (referential integrity, proper primary keys, etc). Give consideration to where indexes may be needed (and include in ddl.sql if any are created).
+
 
 # Highlights of app include
 
-    Spring Data Rest
-    Custom Spring Controllers for API
-    JPA
-    Spring JdbcTemplate
-    Custom Spring Boot configuration classes
-    Spring Profile Configuration
-    Embedded database configuartion
-    MySQL database configuration
-    Flyway database migration
+    Node
+    Seneca
+    Typescript
+    Gulp
 
 ### To run this app
 
- mvn clean package && java -Dspring.profiles.active=production -jar target/user-movie-demo.jar 
- 
- There is a ddl.sql and sample_data.sql in src/main/resources. The custom APIs are implemented in MovieStatsController
- 
-### Discover the APIs
-
-Spring Data Rest APIs
+You need to create a MYSQL db with the ddl.sql and you can use the sample_data.sql to populate the database
+You then need to create an environment variable _
+or 
 ```
-$ http -v GET localhost:8080
-GET / HTTP/1.1
-Accept: */*
-Accept-Encoding: gzip, deflate
-Connection: keep-alive
-Host: localhost:8080
-User-Agent: HTTPie/0.9.4
-
-
-
-HTTP/1.1 200 OK
-Content-Type: application/hal+json;charset=UTF-8
-Date: Mon, 01 Aug 2016 02:10:12 GMT
-Server: Apache-Coyote/1.1
-Transfer-Encoding: chunked
-X-Application-Context: application:production
-
-{
-    "_links": {
-        "genres": {
-            "href": "http://localhost:8080/genres"
-        },
-        "movieRatings": {
-            "href": "http://localhost:8080/movieRatings"
-        },
-        "movies": {
-            "href": "http://localhost:8080/movies"
-        },
-        "profile": {
-            "href": "http://localhost:8080/profile"
-        },
-        "users": {
-            "href": "http://localhost:8080/users"
-        }
-    }
-}
+export DATABASE_URL=mysql://guest:guest@localhost:3306/user_movie_demo && node index.js 
 ```
 
-Spring MVC mappings.
-```
-$ http -v GET localhost:8888/mappings
-GET /mappings HTTP/1.1
-Accept: */*
-Accept-Encoding: gzip, deflate
-Connection: keep-alive
-Host: localhost:8888
-User-Agent: HTTPie/0.9.4
-
-
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-Date: Mon, 01 Aug 2016 02:10:42 GMT
-Server: Apache-Coyote/1.1
-Transfer-Encoding: chunked
-
-{
-    "/**": {
-        "bean": "resourceHandlerMapping"
-    },
-    "/**/favicon.ico": {
-        "bean": "faviconHandlerMapping"
-    },
-    "/webjars/**": {
-        "bean": "resourceHandlerMapping"
-    },
-    "{[/api/movie/top/{genre}/{userId}],methods=[GET]}": {
-        "bean": "requestMappingHandlerMapping",
-        "method": "public org.springframework.http.ResponseEntity<?> com.taptech.ttis.controller.MovieStatsController.topMovies(java.lang.String,java.lang.String) throws java.lang.Exception"
-    },
-    "{[/api/movie/watched/{userId}],methods=[GET]}": {
-        "bean": "requestMappingHandlerMapping",
-        "method": "public org.springframework.http.ResponseEntity<?> com.taptech.ttis.controller.MovieStatsController.watchedMovies(java.lang.String) throws java.lang.Exception"
-    },
-    "{[/api/movie/{movieId}/averageRating],methods=[GET]}": {
-        "bean": "requestMappingHandlerMapping",
-        "method": "public org.springframework.http.ResponseEntity<?> com.taptech.ttis.controller.MovieStatsController.averageRating(java.lang.String) throws java.lang.Exception"
-    },
-    "{[/error],produces=[text/html]}": {
-        "bean": "requestMappingHandlerMapping",
-        "method": "public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)"
-    },
-    "{[/error]}": {
-        "bean": "requestMappingHandlerMapping",
-        "method": "public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)"
-    }
-}
-
-
-```
  
 ### API test functionality
 

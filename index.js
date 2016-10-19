@@ -19,7 +19,8 @@ seneca.ready(function(){
      const senecaApp = seneca.export('web/context')();
      senecaApp.listen(3000);
      */
-    app.listen(3000);
+    console.log("PORT "+process.env.PORT);
+    app.listen(process.env.PORT);
 
     /*
      seneca.act({role:'movie.watcher', cmd:'moviesWatched', userId:'f9c7302d-3984-4fc9-9251-ed0a30517086'}, function(err, item) {
@@ -27,22 +28,24 @@ seneca.ready(function(){
      });
      */
 
-    app.get('/moviesWatched/:id', function (req, res) {
+    app.get('/api/movie/watched/:id', function (req, res) {
         seneca.act({role: 'movie.watcher', cmd: 'moviesWatched', userId: req.params.id}, function (err, item) {
             res.json(item);
         });
     });
 
-    app.get('/averageRating/:id', function (req, res) {
+    app.get('/api/movie/:id/averageRating', function (req, res) {
         seneca.act({role: 'movie.watcher', cmd: 'averageRating', movieId: req.params.id}, function (err, item) {
             res.json(item);
         });
     });
 
-    app.get('/topMovies/:genre/:id', function (req, res) {
+    app.get('/api/movie/top/:genre/:id', function (req, res) {
         seneca.act({role: 'movie.watcher', cmd: 'topMovies', userId: req.params.id, genre:req.params.genre}, function (err, item) {
             res.json(item);
         });
     });
 
 });
+
+
