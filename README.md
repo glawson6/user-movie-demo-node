@@ -1,6 +1,6 @@
 # user-movie-demo-node
 
-Data Focused Java Developer - Programming Test
+Data Focused Java Developer - Programming Test I ported to Node.js
 Create a data model that fulfills the following requirements
 *   Track users, movies, and movie ratings by user
 *   Think through the modeling exercise and decide what tables fields will be useful/required
@@ -18,6 +18,7 @@ Create a data model that fulfills the following requirements
     Node
     Seneca
     Typescript
+    Express
     Gulp
 
 ### To run this app
