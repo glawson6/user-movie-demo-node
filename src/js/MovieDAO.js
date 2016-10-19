@@ -28,7 +28,7 @@ var MovieDAOImpl = (function () {
             connection.query(moviesWatchedQuery, [userId], function (err, rows) {
                 connection.release();
                 if (!err) {
-                    callback(null, { movies: rows });
+                    callback(null, { moviesWatched: rows, totalCount: rows.length, userId: userId });
                 }
             });
             connection.on('error', function (err) {

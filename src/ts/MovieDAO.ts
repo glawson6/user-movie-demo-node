@@ -41,7 +41,7 @@ class MovieDAOImpl{
                 if (!err) {
                     //console.log("Rows " + JSON.stringify(rows));
 
-                    callback(null,{ movies:rows});
+                    callback(null,{ moviesWatched:rows, totalCount:rows.length, userId:userId});
                 }
             });
 
