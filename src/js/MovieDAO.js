@@ -32,7 +32,6 @@ var MovieDAOImpl = (function () {
                 }
             });
             connection.on('error', function (err) {
-                console.log("error " + err);
                 callback(err);
             });
         });

@@ -34,6 +34,7 @@ class MovieDAOImpl{
                 callback(err);
             }
 
+
             console.log('connected as id ' + connection.threadId);
 
             connection.query(moviesWatchedQuery, [userId], function (err, rows) {
@@ -46,7 +47,7 @@ class MovieDAOImpl{
             });
 
             connection.on('error', function (err) {
-                console.log("error " + err);
+                //console.log("error " + err);
                 callback(err);
             });
         });
